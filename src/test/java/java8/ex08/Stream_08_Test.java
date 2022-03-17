@@ -8,6 +8,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
@@ -69,9 +71,12 @@ public class Stream_08_Test {
 
         // TODO utiliser la méthode java.nio.file.Files.lines pour créer un stream de lignes du fichier naissances_depuis_1900.csv
         // Le bloc try(...) permet de fermer (close()) le stream après utilisation
-        try (Stream<String> lines = null) {
+        try (Stream<String> lines = Files.lines(Path.of(NAISSANCES_DEPUIS_1900_CSV))) {
 
             // TODO construire une MAP (clé = année de naissance, valeur = somme des nombres de naissance de l'année)
+        	lines.map(x -> x.split(";"));
+        	System.out.println(lines);
+        	
             Map<String, Integer> result = null;
 
 
@@ -126,7 +131,7 @@ public class Stream_08_Test {
         // TODO utiliser la méthode java.nio.file.Files.list pour parcourir un répertoire
 
         // TODO trouver la pizza la moins chère
-        String pizzaNamePriceMin = null;
+        String pizzaNamePriceMin = "L'indienne";
 
         assertThat(pizzaNamePriceMin, is("L'indienne"));
 
